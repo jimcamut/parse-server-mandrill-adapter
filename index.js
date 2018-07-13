@@ -65,7 +65,7 @@ var MandrillAdapter = mandrillOptions => {
 
     // Overrides for user types
     var user_type = options.user.get("user_type");
-    var user_types = options && options.user_types && Object.keys(options.user_types).length;
+    var user_types = mandrillOptions && mandrillOptions.user_types && Object.keys(mandrillOptions.user_types).length ? mandrillOptions.user_types : undefined;
     if (user_type && user_types) {
        for (var type in user_types) {
           if (type === user_type) {
@@ -138,7 +138,7 @@ var MandrillAdapter = mandrillOptions => {
 
     // Overrides for user types
     var user_type = options.user.get("user_type");
-    var user_types = options && options.user_types && Object.keys(options.user_types).length;
+    var user_types = mandrillOptions && mandrillOptions.user_types && Object.keys(mandrillOptions.user_types).length ? mandrillOptions.user_types : undefined;
     if (user_type && user_types) {
        for (var type in user_types) {
           if (type === user_type) {
@@ -196,7 +196,7 @@ var MandrillAdapter = mandrillOptions => {
 
     // Overrides for user types
     var user_type = options.user.get("user_type");
-    var user_types = options && options.user_types && Object.keys(options.user_types).length;
+    var user_types = mandrillOptions && mandrillOptions.user_types && Object.keys(mandrillOptions.user_types).length ? mandrillOptions.user_types : undefined;
     if (user_type && user_types) {
        for (var type in user_types) {
           if (type === user_type) {
