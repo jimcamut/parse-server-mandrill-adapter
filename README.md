@@ -17,6 +17,16 @@ var server = ParseServer({
   emailAdapter: {
     module: 'parse-server-mandrill-adapter',
     options: {
+      // Add support for user_types with different defaults
+      user_types: {
+         "someusertype": {
+            from_email: "secondemail@email.com",
+            from_name: "New From Name",
+            reply_to: "secondemail@email.com",
+            app_name: "Second App Name"
+         }
+      },
+
       // API key from Mandrill account
       apiKey: 'API-KEY',
       // From email address

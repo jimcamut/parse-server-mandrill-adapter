@@ -62,6 +62,26 @@ var MandrillAdapter = mandrillOptions => {
       global_merge_vars: global_merge_vars
     }
 
+
+    // Overrides for user types
+    var user_type = options.user.get("user_type");
+    var user_types = options && options.user_types && Object.keys(options.user_types).length;
+    if (user_type && user_types) {
+       for (var type in user_types) {
+          if (type === user_type) {
+             var setting = user_types[type];
+             if (setting.from_email) message.from_email = setting.from_email;
+             if (setting.from_name) message.from_name = setting.from_name;
+             if (setting.reply_to) message.headers['Reply-To'] = setting.reply_to;
+             if (setting.app_name) {
+               global_merge_vars[0].content = setting.app_name;
+               message.subject = message.subject.replace(/\*\|appname\|\*/ig, setting.app_name);
+               message.text = message.text.replace(/\*\|appname\|\*/ig, setting.app_name)
+             }
+          }
+       }
+    }
+
     return new Promise((resolve, reject) => {
       if (mandrillOptions.verificationTemplateName) {
         mandrill_client.messages.sendTemplate(
@@ -116,6 +136,25 @@ var MandrillAdapter = mandrillOptions => {
       global_merge_vars: global_merge_vars
     }
 
+    // Overrides for user types
+    var user_type = options.user.get("user_type");
+    var user_types = options && options.user_types && Object.keys(options.user_types).length;
+    if (user_type && user_types) {
+       for (var type in user_types) {
+          if (type === user_type) {
+             var setting = user_types[type];
+             if (setting.from_email) message.from_email = setting.from_email;
+             if (setting.from_name) message.from_name = setting.from_name;
+             if (setting.reply_to) message.headers['Reply-To'] = setting.reply_to;
+             if (setting.app_name) {
+               global_merge_vars[0].content = setting.app_name;
+               message.subject = message.subject.replace(/\*\|appname\|\*/ig, setting.app_name);
+               message.text = message.text.replace(/\*\|appname\|\*/ig, setting.app_name)
+             }
+          }
+       }
+    }
+
     return new Promise((resolve, reject) => {
       if (mandrillOptions.passwordResetTemplateName) {
         mandrill_client.messages.sendTemplate(
@@ -153,6 +192,25 @@ var MandrillAdapter = mandrillOptions => {
       }],
       subject: options.subject,
       text: options.text
+    }
+
+    // Overrides for user types
+    var user_type = options.user.get("user_type");
+    var user_types = options && options.user_types && Object.keys(options.user_types).length;
+    if (user_type && user_types) {
+       for (var type in user_types) {
+          if (type === user_type) {
+             var setting = user_types[type];
+             if (setting.from_email) message.from_email = setting.from_email;
+             if (setting.from_name) message.from_name = setting.from_name;
+             if (setting.reply_to) message.headers['Reply-To'] = setting.reply_to;
+             if (setting.app_name) {
+               global_merge_vars[0].content = setting.app_name;
+               message.subject = message.subject.replace(/\*\|appname\|\*/ig, setting.app_name);
+               message.text = message.text.replace(/\*\|appname\|\*/ig, setting.app_name)
+             }
+          }
+       }
     }
 
     return new Promise((resolve, reject) => {
